@@ -74,16 +74,17 @@ userSchema.methods.generateAccessToken = async function (params) {
         email: this.email,
         user: this.user,
         fullname: this.fullname
-    }, 
-    process.env.ACCESS_TOKEN_SECRET,
+    },
+        process.env.ACCESS_TOKEN_SECRET,
         { expiryIN: ACCESS_TOKEN_EXPIRY }
     )
 }
 userSchema.methods.generateRefreshToken = async function (params) {
     return JsonWebToken.sign({
         id: this._id,
-  
-    process.env.REFRESH_TOKEN_SECRET,
+       
+    },
+        process.env.REFRESH_TOKEN_SECRET,
         { expiryIN: REFRESH_TOKEN_EXPIRY }
     )
 }

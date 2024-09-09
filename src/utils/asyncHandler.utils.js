@@ -11,8 +11,11 @@ const asyncHandler = (func) => async (res, req, next) => {
 export { asyncHandler }
 
 // another way
-// const assync = (func) => (req, res, next) => {
-//     return Promise.resolve(func(req, res, next)).catch(err => next(err));
+// const asyncHandler = (func) => {
+//     return (req, res, next) => {
+//         Promise.resolve(func(req, res, next)).catch(err => next(err));
+//     }
 // };
 
-// export default assync;
+// export default asyncHandler;
+    
