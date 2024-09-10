@@ -1,28 +1,29 @@
 import mongoose, { Schema } from "mongoose"
 import bcrypt from "bcrypt"
-import { JsonWebToken } from "jsonwebtoken"
+import JsonWebToken  from "jsonwebtoken"
 const userSchema = new Schema({
     user: {
         type: String,
         required: true,
         unique: true,
-        index: true
+        index: true,
+        minlength: 3
     },
     email: {
         type: String,
         required: true,
         unique: true,
-
+        minlength: 3
     },
     password: {
         type: String,
         required: [true, "password is required"],
-
+        minlength: 3
     },
     fullname: {
         type: String,
         required: true,
-
+        minlength: 3
     },
     avatar: {
         type: String,
@@ -82,7 +83,7 @@ userSchema.methods.generateAccessToken = async function (params) {
 userSchema.methods.generateRefreshToken = async function (params) {
     return JsonWebToken.sign({
         id: this._id,
-       
+
     },
         process.env.REFRESH_TOKEN_SECRET,
         { expiryIN: REFRESH_TOKEN_EXPIRY }
