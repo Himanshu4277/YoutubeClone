@@ -197,7 +197,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
     return res.status(200).json(user, "Avatar updated successfully")
 })
 const getUserChannelProfile = asyncHandler(async (req, res) => {
-    const username = req.params
+    const {username} = req.params
     if (!username) {
         throw new ApiError("username is missing", 400)
     }
